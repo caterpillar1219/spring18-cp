@@ -69,7 +69,7 @@ public class ArrayDeque<T> {
         T x = arr[(nextFirst + 1) % arr.length];
         size--;
         nextFirst = (nextFirst + 1) % arr.length;
-        if (size >= 16 && (float) size / arr.length < 0.25) {
+        if (arr.length >= 16 && (float) size / arr.length < 0.25) {
             this.resize(arr.length / 2);
         }
         return x;
@@ -82,7 +82,7 @@ public class ArrayDeque<T> {
         T x = arr[(nextLast - 1 + arr.length) % arr.length];
         size--;
         nextLast = (nextLast - 1 + arr.length) % arr.length;
-        if (size >= 16 && (float) size / arr.length < 0.25) {
+        if (arr.length >= 16 && (float) size / arr.length < 0.25) {
             this.resize(arr.length / 2);
         }
         return x;
