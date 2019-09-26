@@ -14,12 +14,9 @@ public class ArrayDeque<T> {
     private void resize(int capacity) {
         T[] a = (T[]) new Object[capacity];
         int i = (nextFirst + 1) % arr.length;
-        nextLast = (nextLast - nextFirst - 1 + arr.length) % arr.length;
-        if (nextLast == 0) {
-            nextLast = arr.length;
-        }
+        nextLast = size;
         nextFirst = capacity - 1;
-        for (int j = 0; j < nextLast; j ++ ){
+        for (int j = 0; j < size; j++) {
             a[j] = arr[i];
             i = (i + 1) % arr.length;
         }
@@ -28,24 +25,24 @@ public class ArrayDeque<T> {
 
     public void addFirst(T item) {
         arr[nextFirst] = item;
-        size ++;
+        size++;
         nextFirst = (nextFirst - 1 + arr.length) % arr.length;
         if (size == arr.length) {
-            this.resize(2 * arr.length);
+            resize(2 * arr.length);
         }
     }
 
     public void addLast(T item) {
         arr[nextLast] = item;
-        size ++;
+        size++;
         nextLast = (nextLast + 1) % arr.length;
         if (size == arr.length) {
-            this.resize(2 * arr.length);
+            resize(2 * arr.length);
         }
     }
 
     public boolean isEmpty() {
-        return (nextLast - nextFirst + arr.length - 1) % arr.length == 0;
+        return size == 0;
     }
 
     public int size() {
@@ -53,12 +50,16 @@ public class ArrayDeque<T> {
     }
 
     public void printDeque() {
-        for (int i = (nextFirst + 1) % arr.length; i != nextLast; i = (i + 1) % arr.length) {
-            System.out.print(arr[i]);
-            if ((i + 1) % arr.length != nextLast) {
-                System.out.print(" ");
-            }
+        if (size == 0) {
+            return;
         }
+        int i = (nextFirst + 1) % arr.length;
+        for (int j = 0; j < size - 1; j++) {
+            System.out.print(arr[i]);
+            System.out.print(" ");
+            i = (i + 1) % arr.length;
+        }
+        System.out.print(arr[i]);
     }
 
     public T removeFirst() {
@@ -66,9 +67,9 @@ public class ArrayDeque<T> {
             return null;
         }
         T x = arr[(nextFirst + 1) % arr.length];
-        size --;
+        size--;
         nextFirst = (nextFirst + 1) % arr.length;
-        if (size >= 16 && (float)size / arr.length < 0.25){
+        if (size >= 16 && (float) size / arr.length < 0.25) {
             this.resize(arr.length / 2);
         }
         return x;
@@ -79,16 +80,16 @@ public class ArrayDeque<T> {
             return null;
         }
         T x = arr[(nextLast - 1 + arr.length) % arr.length];
-        size --;
+        size--;
         nextLast = (nextLast - 1 + arr.length) % arr.length;
-        if (size >= 16 && (float)size / arr.length < 0.25){
+        if (size >= 16 && (float) size / arr.length < 0.25) {
             this.resize(arr.length / 2);
         }
         return x;
     }
 
     public T get(int index) {
-        if ((nextLast - nextFirst + arr.length - 1) % arr.length <= index) {
+        if (size <= index) {
             return null;
         }
         return arr[(nextFirst + 1 + index) % arr.length];
