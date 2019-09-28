@@ -24,6 +24,8 @@ public class TestPalindrome {
         assertTrue(palindrome.isPalindrome("tas", cc));
         assertTrue(palindrome.isPalindrome("flake", cc));
         assertFalse(palindrome.isPalindrome("apjdh", cc));
+        assertTrue(palindrome.isPalindrome("$GtH%", cc));
+        assertFalse(palindrome.isPalindrome("$GtG%", cc));
     }
 
 
