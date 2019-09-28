@@ -22,7 +22,7 @@ public class Palindrome {
     }
 
     public boolean isPalindrome(String word, CharacterComparator cc) {
-        return this.isPalindrome(wordToDeque(word), cc);
+        return this.isPalindrome(wordToDeque(word), cc) || this.isPalindrome(word);
     }
 
     private boolean isPalindrome(Deque<Character> mydeque, CharacterComparator cc) {
