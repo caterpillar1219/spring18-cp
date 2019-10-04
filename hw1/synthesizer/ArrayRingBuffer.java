@@ -13,12 +13,11 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
      * Create a new ArrayRingBuffer with the given capacity.
      */
     public ArrayRingBuffer(int capacity) {
-
         rb = (T[]) new Object[capacity];
         this.capacity = capacity;
         first = 0;
         last = 0;
-        fillCount = 0;
+        this.fillCount = 0;
     }
 
     /**
