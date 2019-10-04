@@ -33,17 +33,22 @@ public class TestGuitarString {
 
         // Record the front four values, ticcing as we go.
         double s1 = s.sample();
+        System.out.println(s1);
         s.tic();
         double s2 = s.sample();
+        System.out.println(s2);
         s.tic(); 
         double s3 = s.sample();
+        System.out.println(s3);
         s.tic();
         double s4 = s.sample();
+        System.out.println(s4);
 
         // If we tic once more, it should be equal to 0.996*0.5*(s1 + s2)
         s.tic();
 
         double s5 = s.sample();
+        System.out.println(s5);
         double expected = 0.996 * 0.5 * (s1 + s2);
 
         // Check that new sample is correct, using tolerance of 0.001.

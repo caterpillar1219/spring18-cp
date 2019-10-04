@@ -1,4 +1,3 @@
-// TODO: Make sure to make this class a part of the synthesizer package
 package synthesizer;
 
 //Make sure this class is public
@@ -20,7 +19,6 @@ public class GuitarString {
 
     /* Pluck the guitar string by replacing the buffer with white noise. */
     public void pluck() {
-
         //       Make sure that your random numbers are different from each other.
         while (!buffer.isEmpty()) {
             buffer.dequeue();
