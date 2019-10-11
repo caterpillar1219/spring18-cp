@@ -165,6 +165,9 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
      */
     @Override
     public T removeMin() {
+        if (size == 0) {
+            return null;
+        }
         swap(1, size);
         T ret = getNode(size).myItem;
         contents[size] = null;
